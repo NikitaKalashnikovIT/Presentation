@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Card</title>
+</head>
+<body>
+
+<form th:method="GET" th:action="@{/people/card/delete/{id}/{id_person}(id=${dataCard[0].getCardId()},id_person=${dataCard[0].getOwnerId()})}"  th:object[] ="${dataCard}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:method="GET" th:action="@{/people/card/{id_person}(id_person=${dataCard[0].getOwnerId()})}"  th:object[] ="${dataCard}">
+    <input type="submit" value="Back"/>
+</form>
+
+</body>
+</html>
