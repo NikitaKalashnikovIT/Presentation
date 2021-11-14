@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IndexCard</title>
+</head>
+<body>
+
+<div th:each="card : ${dataCard}">
+    <a th:href="@{/people/card/show/{id}/{id_person}(id=${dataCard[0].getCardId()},id_person=${dataCard[0].getOwnerId()})}"
+     th:text="${'Номер карты ' +card.getCardNumber() + ',CVC Код ' + card.getCvcNumber()+ ', Дата выдачи '
+       + card.getIssuingCard()+ ', Срок действия ' + card.getExpirationCard()}"
+       th:if="${card.getCardNumber()}">user</a>
+</div>
+<br/>
+<hr/>
+<form th:method="GET" th:action="@{/people/card/showCard/{id}(id=${dataCard[0].getOwnerId()})}"  th:object[] ="${dataCard}" >
+    <input type="submit" value="Create new card"/>
+</form>
+
+<form th:method="GET" th:action="@{/people/{id}(id=${dataCard[0].getOwnerId()})}"  th:object[] ="${dataCard}">
+    <input type="submit" value="Back"/>
+</form>
+
+</body>
+</html>
+

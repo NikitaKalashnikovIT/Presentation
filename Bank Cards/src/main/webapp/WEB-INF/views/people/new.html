@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New person</title>
+</head>
+<body>
+<!--&lt;!&ndash;th:method="POST" Форма будет отправляться с методом post-->
+<!--    th:action="@{/people}" куда будут передоваться данные-->
+<!--    th:object="${person}" для какого объекта будет создаваться форма-->
+<!--    input type="text" тип поля в которое будет вводиться значение-->
+<!--    th:field="*{name}" имя поля которое есть в объекте person-->
+<!--    id="name" понадобится для создания лейбла-->
+<!--     <label for="name">Enter name: </label> создание лейбла поля куда вводить данные-->
+<!--     <input type="submit" value="Create!"/> кнопка при нажати на которую-->
+<!--     данные с этой формой отправим на адрес /people-->
+<!--    &ndash;&gt;-->
+<form th:method="POST" th:action="@{/people}" th:object="${person}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label for="age">Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>
+    <br/>
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>
